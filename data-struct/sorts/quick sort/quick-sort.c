@@ -39,43 +39,33 @@ void classifRapid(int *T, int imin, int imax) {
     }
 }
 
-void quickSort(int *T, int n) {
+void quick_sort(int *T, int n) {
     classifRapid(T, 0, n - 1); 
 }
 
-void LerVetor(int *T, int n) {
-    int i;
-
-    for(i = 0; i < n; i++){
-        printf("Digite um numero: ");
-        scanf("%d", &T[i]);
-    }
-}
-
-void imprimirVetor(int *T, int n) {
-    int i;
-    for(i = 0; i < n; i++) {
-        printf("%d", T[i]);
-    }
-
-    printf("\n");
-}
 
 int main() {
 
-    int T[10];
+     int T[10];
     int n = 10;
 
     printf("Digite 10 numeros para o vetor:\n");
-    LerVetor(T, n);
+    for(int i = 0; i < n; i++){
+        printf("T[%d]: ", i);
+        scanf(" %d", &T[i]);
+    }
 
-    printf("Array antes da ordenacao:\n");
-    imprimirVetor(T, n);
+    printf("Vetor antes: ");
+    for(int i = 0; i < n; i++) {
+        printf("%d ", T[i]);
+    }
 
-    quickSort(T, n);
+    quick_sort(T, n);
 
-    printf("Array depois da ordenacao:\n");
-    imprimirVetor(T, n);
+    printf("\nVetor depois: ");
+    for(int i = 0; i < n; i++) {
+        printf("%d ", T[i]);
+    }
 
     printf("\n");
 
