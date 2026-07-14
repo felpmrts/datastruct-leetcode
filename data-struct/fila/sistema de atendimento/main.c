@@ -9,6 +9,7 @@ int main() {
     int opcao;
     int cont_normal = 1;
     int cont_prioritaria = 1;
+    int consecutivos_prioritaria = 0;
     TipoDado cliente_atendido;
 
     do {
@@ -43,12 +44,18 @@ int main() {
                 }
                 break;
             case 3:
-                if (!FilaVazia(fila_prioritaria)) {
+                if (consecutivos_prioritaria >= 2 && !FilaVazia(fila_normal)) {
+                    Desenfileirar(&fila_normal, &cliente_atendido);
+                    printf("Atendendo cliente normal: N%03d\n\n", cliente_atendido);
+                    consecutivos_prioritaria = 0;
+                } else if (!FilaVazia(fila_prioritaria)) {
                     Desenfileirar(&fila_prioritaria, &cliente_atendido);
                     printf("Atendendo cliente prioritario: P%03d\n\n", cliente_atendido);
+                    consecutivos_prioritaria++;
                 } else if (!FilaVazia(fila_normal)) {
                     Desenfileirar(&fila_normal, &cliente_atendido);
                     printf("Atendendo cliente normal: N%03d\n\n", cliente_atendido);
+                    consecutivos_prioritaria = 0;
                 } else {
                     printf("Nenhum cliente na fila de espera.\n\n");
                 }
